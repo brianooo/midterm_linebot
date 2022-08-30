@@ -1,0 +1,89 @@
+{
+    "size": {
+      "width": 1200,
+      "height": 810
+    },
+    "selected": true,
+    "name": "區塊鏈自定義菜單",
+    "chatBarText": "查看更多資訊",
+    "areas": [
+      {
+        "bounds": {
+          "x": 40,
+          "y": 45,
+          "width": 370,
+          "height": 375
+        },
+        "action": {
+          "type": "postback",
+          "text": "@龜去來戲",
+          "data": "Data1"
+        }
+      },
+      {
+        "bounds": {
+          "x": 440,
+          "y": 45,
+          "width": 350,
+          "height": 375
+        },
+        "action": {
+          "type": "postback",
+          "text": "@世界龜寶",
+          "data": "Data2"
+        }
+      },
+      {
+        "bounds": {
+          "x": 815,
+          "y": 45,
+          "width": 355,
+          "height": 375
+        },
+        "action": {
+          "type": "postback",
+          "text": "@幫你龜類",
+          "data": "Data3"
+        }
+      },
+      {
+        "bounds": {
+          "x": 40,
+          "y": 450,
+          "width": 370,
+          "height": 335
+        },
+        "action": {
+          "type": "postback",
+          "text": "@我的龜密",
+          "data": "Data4"
+        }
+      },
+      {
+        "bounds": {
+          "x": 440,
+          "y": 450,
+          "width": 350,
+          "height": 335
+        },
+        "action": {
+          "type": "postback",
+          "text": "@殊途同龜",
+          "data": "Data5"
+        }
+      },
+      {
+        "bounds": {
+          "x": 815,
+          "y": 450,
+          "width": 355,
+          "height": 335
+        },
+        "action": {
+          "type": "postback",
+          "text": "@默守成龜",
+          "data": "Data6"
+        }
+      }
+    ]
+  }

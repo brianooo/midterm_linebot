@@ -9,9 +9,14 @@ from flask import Request
 from linebot import (
     LineBotApi
 )
+from linebot.models import (
+    TextSendMessage, FlexSendMessage
+)
 
 import os
 from daos.user_dao import UserDAO
+
+from utils.reply_send_message import detect_json_array_to_new_message_array
 
 # 圖片下載與上傳專用
 import urllib.request
@@ -27,7 +32,7 @@ class UserService:
     '''
 
     @classmethod
-    def line_user_follow(cls, event):
+    def line_user_follow(cls, event, richmenuid):
         # 取個資
         line_user_profile = cls.line_bot_api.get_profile(event.source.user_id)
         # print(line_user_profile)
@@ -70,6 +75,14 @@ class UserService:
 
         # 打印結果
         # print(user)
+
+        # 暖身小遊戲
+        result_message_array = detect_json_array_to_new_message_array('game_message_json/welcome.json')
+        cls.line_bot_api.push_message(user.line_user_id, result_message_array)
+
+        # 綁定圖文選單
+        cls.line_bot_api.link_rich_menu_to_user(user.line_user_id, richmenuid)
+
 
         # 回傳結果給handler
         # 關注的部分，不回傳，交由控制台回傳

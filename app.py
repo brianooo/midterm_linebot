@@ -28,6 +28,21 @@ import os
 line_bot_api=LineBotApi(channel_access_token=os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
 handler=WebhookHandler(channel_secret=os.environ["LINE_CHANNEL_SECRET"])
 
+# 設定圖文選單和載入圖片
+from linebot.models import RichMenu
+import requests
+import json
+
+menufile = 'richmenu/menuraw1.json'
+menuimage = 'richmenu/menu1.jpg'
+with open(menufile, 'r', encoding='utf-8') as f:
+    menuJson = json.load(f)
+
+lineRichMenuId = line_bot_api.create_rich_menu(rich_menu=RichMenu.new_from_json_dict(menuJson))
+
+with open(menuimage, 'rb') as uploadImage:
+    line_bot_api.set_rich_menu_image(lineRichMenuId, 'image/jpeg', uploadImage)
+
 
 # 載入Follow事件
 from linebot.models.events import (
@@ -45,8 +60,8 @@ from google.cloud.logging.handlers import CloudLoggingHandler
 client = google.cloud.logging.Client()
 
 # 建立line event log，用來記錄line event
-bot_event_handler = CloudLoggingHandler(client,name="ncu_bot_event")
-bot_event_logger=logging.getLogger('ncu_bot_event')
+bot_event_handler = CloudLoggingHandler(client,name="seaturtle_bot_event")
+bot_event_logger=logging.getLogger('seaturtle_bot_event')
 bot_event_logger.setLevel(logging.INFO)
 bot_event_logger.addHandler(bot_event_handler)
 
@@ -79,7 +94,7 @@ def callback():
 
 @handler.add(FollowEvent)
 def handle_line_follow(event):
-    return LineBotController.follow_event(event)
+    return LineBotController.follow_event(event, lineRichMenuId)
 
 @handler.add(UnfollowEvent)
 def handle_line_unfollow(event):

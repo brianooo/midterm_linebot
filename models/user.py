@@ -16,6 +16,7 @@ class User(object):
         self.line_user_nickname = line_user_nickname
         self.line_user_status = line_user_status
         self.line_user_system_language = line_user_system_language
+        self.line_user_click = {"Data1":0, "Data2":0, "Data3":0, "Data4":0, "Data5":0, "Data6":0}
         self.blocked = blocked
 
     # source的欄位係以 資料庫欄位做為預設命名
@@ -27,6 +28,7 @@ class User(object):
             line_user_nickname=source.get(u'line_user_nickname'),
             line_user_status=source.get(u'line_user_status'),
             line_user_system_language=source.get(u'line_user_system_language'),
+            line_user_click=source.get(u'line_user_click'),
             blocked=source.get(u'blocked')
         )
 
@@ -39,6 +41,7 @@ class User(object):
             "line_user_nickname": self.line_user_nickname,
             "line_user_status": self.line_user_status,
             "line_user_system_language": self.line_user_system_language,
+            "line_user_click": self.line_user_click,
             "blocked": self.blocked
         }
         return user_dict
@@ -50,6 +53,7 @@ class User(object):
             line_user_nickname={self.line_user_nickname},
             line_user_status={self.line_user_status},
             line_user_system_language={self.line_user_system_language},
+            line_user_click={self.line_user_click}
             blocked={self.blocked}
             )'''
                 )

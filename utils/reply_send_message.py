@@ -1,6 +1,6 @@
 # 引用會用到的套件
 from linebot.models import (
-    ImagemapSendMessage,TextSendMessage,ImageSendMessage,LocationSendMessage,FlexSendMessage,VideoSendMessage,StickerSendMessage,AudioSendMessage
+    ImagemapSendMessage,TextSendMessage,ImageSendMessage,LocationSendMessage,FlexSendMessage,VideoSendMessage,StickerSendMessage,AudioSendMessage,TemplateSendMessage
 )
 
 from linebot.models.template import (
@@ -43,7 +43,10 @@ def detect_json_array_to_new_message_array(fileName):
         elif message_type == 'flex':
             returnArray.append(FlexSendMessage.new_from_json_dict(jsonObject))  
         elif message_type == 'video':
-            returnArray.append(VideoSendMessage.new_from_json_dict(jsonObject))    
+            returnArray.append(VideoSendMessage.new_from_json_dict(jsonObject))
+        elif message_type == 'bubble':
+            returnArray.append(FlexSendMessage.new_from_json_dict(jsonObject))
+
 
 
     # 回傳
